@@ -1,4 +1,5 @@
 #!/usr/bin/env python2.7
+#-*- coding: utf8 -*-
 from WeiboConfig import WeiboConf 
 from weibo import APIClient
 if __name__ == '__main__':
@@ -15,9 +16,9 @@ if __name__ == '__main__':
     expires_in = float(config.expires_in)
     client.set_access_token(config.access_token, expires_in)
     timeline = client.statuses.friends_timeline.get()
-    print timeline.__doc__
     for e in timeline.statuses:
         print "%s:\t%s" % (e.user.screen_name, e.text)
+    print client.statuses.update.post(status=u'test中文')
 
     config.saveConf()
 
